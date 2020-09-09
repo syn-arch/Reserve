@@ -25,3 +25,7 @@ $('.ubah_menu').click(function(){
 $(document).on('click', '.hapus_role', function(){
 	hapus($(this).data('href'))
 })
+
+$(document).on('click', '.hapus_backup', function(){
+	hapus($(this).data('href'))
+})

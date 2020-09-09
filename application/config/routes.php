@@ -22,9 +22,13 @@ $route['master/kamar'] = 'kamar';
 $route['master/tambah_kamar'] = 'kamar/tambah';
 $route['master/hapus_kamar/(:any)'] = 'kamar/hapus/$1';
 $route['master/ubah_kamar/(:any)'] = 'kamar/ubah/$1';
+$route['master/template_kamar'] = 'kamar/template';
+$route['master/import_kamar'] = 'kamar/import';
 
 // pengunjung
 $route['master/pengunjung'] = 'pengunjung';
 $route['master/tambah_pengunjung'] = 'pengunjung/tambah';
 $route['master/hapus_pengunjung/(:any)'] = 'pengunjung/hapus/$1';
 $route['master/ubah_pengunjung/(:any)'] = 'pengunjung/ubah/$1';
+$route['master/template_pengunjung'] = 'pengunjung/template';
+$route['master/import_pengunjung'] = 'pengunjung/import';

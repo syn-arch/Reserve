@@ -83,6 +83,57 @@ class kamar extends MX_Controller {
 		$this->load->view('templates/footer', $data, FALSE);
 	}
 
+	public function template()
+	{
+		$kamar = $this->kamar_model->get_kamar();
+		$spreadsheet = new Spreadsheet();
+		$spreadsheet->setActiveSheetIndex(0)
+		->setCellValue('A1', 'ID')
+		->setCellValue('B1', 'Kode kamar')
+		->setCellValue('C1', 'Nama kamar')
+		->setCellValue('D1', 'Harga')
+		->setCellValue('E1', 'Keterangan')
+		;              
+
+		$writer = new Xlsx($spreadsheet);
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="Template kamar.xlsx"');
+		header('Cache-Control: max-age=0');
+		$writer->save('php://output');
+	}
+
+	public function import()
+	{
+		$file = explode('.', $_FILES['excel']['name']);
+		$extension = end($file);
+
+		if($extension == 'csv') {
+			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+		} else {	
+			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+		}
+
+		$spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
+		$sheetData = $spreadsheet->getActiveSheet()->toArray();
+		for($i = 1;$i < count($sheetData); $i++)
+		{
+			if ($sheetData[$i]['0'] != '') {
+				$data = [
+					'id_kamar' => $sheetData[$i]['0'],
+					'id_kamar' => $sheetData[$i]['1'],
+					'nama_kamar' => $sheetData[$i]['2'],
+					'harga' => $sheetData[$i]['3'],
+					'keterangan' => $sheetData[$i]['4']
+				];
+
+				$this->db->insert('kamar', $data);
+			}
+		}
+
+		$this->session->set_flashdata('success', 'Di import');
+		redirect('master/kamar','refresh');
+	}
+
 	public function export()
 	{
 		$kamar = $this->kamar_model->get_kamar();

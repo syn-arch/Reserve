@@ -138,6 +138,67 @@ class pengunjung extends MX_Controller {
 		header('Cache-Control: max-age=0');
 		$writer->save('php://output');
 	}
+
+	public function template()
+	{
+		$spreadsheet = new Spreadsheet();
+		$spreadsheet->setActiveSheetIndex(0)
+		->setCellValue('A1', 'ID')
+		->setCellValue('B1', 'Tanggal Pengunjung')
+		->setCellValue('C1', 'nama lembaga')
+		->setCellValue('D1', 'nama pengunjung')
+		->setCellValue('E1', 'alamat')
+		->setCellValue('F1', 'no telp')
+		->setCellValue('G1', 'no fax')
+		->setCellValue('H1', 'no hp')
+		->setCellValue('I1', 'email')
+		->setCellValue('J1', 'status')
+		;                 
+
+		$writer = new Xlsx($spreadsheet);
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="Template pengunjung.xlsx"');
+		header('Cache-Control: max-age=0');
+		$writer->save('php://output');
+	}
+
+	public function import()
+	{
+		$file = explode('.', $_FILES['excel']['name']);
+		$extension = end($file);
+
+		if($extension == 'csv') {
+			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+		} else {	
+			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+		}
+
+		$spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
+		$sheetData = $spreadsheet->getActiveSheet()->toArray();
+		for($i = 1;$i < count($sheetData); $i++)
+		{
+
+			if ($sheetData[$i]['0'] != '') {
+				$data = [
+					'id_pengunjung' => $sheetData[$i]['0'],
+					'tgl_pengunjung' => $sheetData[$i]['1'],
+					'nama_lembaga' => $sheetData[$i]['2'],
+					'nama_pengunjung' => $sheetData[$i]['3'],
+					'alamat' => $sheetData[$i]['4'],
+					'no_telp' => $sheetData[$i]['5'],
+					'no_fax' => $sheetData[$i]['6'],
+					'no_hp' => $sheetData[$i]['7'],
+					'email' => $sheetData[$i]['8'],
+					'status' => $sheetData[$i]['9']
+				];
+
+				$this->db->insert('pengunjung', $data);
+			}
+		}
+
+		$this->session->set_flashdata('success', 'Di import');
+		redirect('master/pengunjung','refresh');
+	}
 	
 
 }

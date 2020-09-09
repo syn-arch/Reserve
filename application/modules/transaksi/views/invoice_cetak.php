@@ -65,13 +65,13 @@
 <body onload="window.print()">
     <div id="wrapper">
         <div id="receiptData" style="width: 720px; min-width: 250px; margin: 0 auto;">
-            <table border="1" width="100%">
+            <table border="0" width="100%">
                 <tr>
-                    <td colspan="5" style="padding-right:5px; text-align: right"> KBM JLPL</td>
-                    <td rowspan="2" style="padding:5px"><img width="100" src="<?php echo base_url('assets/img/perhutani.png') ?>" alt=""></td>
+                    <td colspan="5" style="padding-right:5px; text-align: right; border-bottom: 1px solid black"> KBM JLPL</td>
+                    <td rowspan="2" style="padding:5px;"><img width="100" src="<?php echo base_url('assets/img/perhutani.png') ?>" alt=""></td>
                 </tr>
                 <tr>
-                    <td colspan="5" style="padding:5px; text-align: right"> PATUHA RESORT CIWIDEY BANDUNG</td>
+                    <td colspan="5" style="padding:5px; text-align: right;border-bottom: 1px solid black"> PATUHA RESORT CIWIDEY BANDUNG</td>
                 </tr>
                 <tr>
                     <th colspan="1" style="padding: 5px;">No</th>
@@ -89,10 +89,10 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <th colspan="7" style="padding: 5px;">Untuk Pembayaran</th>
+                    <th colspan="7" style="padding: 5px;border-bottom: 1px solid black">Untuk Pembayaran</th>
                 </tr>
                 <tr>
-                    <td colspan="7">
+                    <td colspan="7" style="border-bottom: 1px solid black">
                         <table width="100%">
                          <?php
                          $this->db->join('kamar', 'id_kamar');

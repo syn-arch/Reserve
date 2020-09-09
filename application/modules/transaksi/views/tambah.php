@@ -68,8 +68,8 @@
                     <tr>
                       <th>Kode Kamar</th>
                       <th>Harga</th>
-                      <th>Diskon</th>
                       <th>Qty</th>
+                      <th>Diskon</th>
                       <th>Total Harga</th>
                       <th><i class="fa fa-cogs"></i></th>
                     </tr>

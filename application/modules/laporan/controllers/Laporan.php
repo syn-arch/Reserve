@@ -49,16 +49,26 @@ class laporan extends MX_Controller {
 		$spreadsheet = new Spreadsheet();
 		$spreadsheet->setActiveSheetIndex(0)
 		->setCellValue('A1', 'ID Kamar')
-		->setCellValue('B1', 'Jumlah Disewa')
-		->setCellValue('C1', 'Total Pendapatan')
+		->setCellValue('B1', 'Nama Kamar')
+		->setCellValue('C1', 'Harga')
+		->setCellValue('D1', 'Jumlah Disewa')
+		->setCellValue('E1', 'Jumlah Transaksi')
+		->setCellValue('F1', 'Subtotal')
+		->setCellValue('G1', 'Jumlah Diskon')
+		->setCellValue('H1', 'Total Pendapatan')
 		;
 		// Miscellaneous glyphs, UTF-8
 		$i=2; 
 		foreach($laporan as $row) {
 			$spreadsheet->setActiveSheetIndex(0)
 			->setCellValue('A' . $i, $row['id_kamar'])
-			->setCellValue('B' . $i, $row['jumlah_transaksi'])
-			->setCellValue('C' . $i, $row['total_pendapatan'])
+			->setCellValue('B' . $i, $row['nama_kamar'])
+			->setCellValue('C' . $i, $row['harga'])
+			->setCellValue('D' . $i, $row['jumlah_disewa'])
+			->setCellValue('E' . $i, $row['jumlah_transaksi'])
+			->setCellValue('F' . $i, $row['subtotal'])
+			->setCellValue('G' . $i, $row['jumlah_diskon'])
+			->setCellValue('H' . $i, $row['total_pendapatan'])
 			;
 			$i++;
 		}                           

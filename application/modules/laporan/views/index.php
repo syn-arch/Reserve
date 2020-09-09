@@ -43,8 +43,13 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>ID Kamar</th>
                                 <th>Nama Kamar</th>
+                                <th>Harga</th>
                                 <th>Jumlah Disewa</th>
+                                <th>Jumlah Transaksi</th>
+                                <th>Subtotal</th>
+                                <th>Jumlah Diskon</th>
                                 <th>Total Pendapatan</th>
                             </tr>
                         </thead>
@@ -52,8 +57,13 @@
                             <?php $no = 1; foreach ($laporan as $row): ?>
                                 <tr>
                                     <td><?php echo $no++ ?></td>
+                                    <td><?php echo $row['id_kamar'] ?></td>
                                     <td><?php echo $row['nama_kamar'] ?></td>
+                                    <td><?php echo "Rp. " . number_format($row['harga']) ?></td>
+                                    <td><?php echo $row['jumlah_disewa'] ?></td>
                                     <td><?php echo $row['jumlah_transaksi'] ?></td>
+                                    <td><?php echo "Rp. " . number_format($row['subtotal']) ?></td>
+                                    <td><?php echo "Rp. " . number_format($row['jumlah_diskon']) ?></td>
                                     <td><?php echo "Rp. " . number_format($row['total_pendapatan']) ?></td>
                                 </tr>
                             <?php endforeach ?>

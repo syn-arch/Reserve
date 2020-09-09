@@ -26,8 +26,8 @@ $(function(){
 				<tr data-id=${data.id_kamar}>
 				<td><input readonly type="text" name="id_kamar[]" value="${data.id_kamar}" class="form-control"></td>
 				<td><input readonly type="text" name="harga[]" value="${data.harga}" class="form-control harga"></td>
-				<td><input required type="number" name="diskon[]" value="0" class="form-control diskon" placeholder="Diskon"></td>
 				<td><input required type="number" name="qty[]" value="1" class="form-control qty" placeholder="Qty"></td>
+				<td><input required type="number" name="diskon[]" value="0" class="form-control diskon" placeholder="Diskon"></td>
 				<td><input readonly type="text" name="total_harga[]" value="${data.harga}" class="form-control total_harga"></td>
 				<td>
 				<a data-id="${data.id_kamar}" class="btn btn-danger hapus_detail_kamar"><i class="fa fa-trash"></i></a>
@@ -49,7 +49,7 @@ $(function(){
 		(isNaN(qty)) ? qty_1 =  1 : qty_1 = qty;
 		(isNaN(diskon)) ? diskon_1 =  0 : diskon_1 = diskon;
 
-		let total_harga = parseInt(qty_1) * (parseInt(harga) - parseInt(diskon_1));
+		let total_harga = ( parseInt(qty_1) * parseInt(harga) ) - parseInt(diskon_1);
 
 		(isNaN(total_harga)) ? total =  harga : total = total_harga;
 
@@ -67,7 +67,7 @@ $(function(){
 		(isNaN(diskon)) ? diskon_1 =  0 : diskon_1 = diskon;
 		(isNaN(qty)) ? qty_1 =  1 : qty_1 = qty;
 
-		let total_harga = parseInt(qty_1) * (parseInt(harga) - parseInt(diskon_1));
+		let total_harga = (parseInt(qty_1) * parseInt(harga)) - parseInt(diskon_1);
 
 		(isNaN(total_harga)) ? total = harga : total = total_harga;
 

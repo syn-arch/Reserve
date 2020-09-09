@@ -17,7 +17,9 @@ class laporan_model extends CI_Model {
 							nama_kamar,
 							harga,
 							SUM(detail_transaksi.diskon) AS jumlah_diskon,
-							SUM(detail_transaksi.qty) AS jumlah_transaksi, 
+							SUM(detail_transaksi.qty) AS jumlah_disewa, 
+							COUNT(detail_transaksi.id_transaksi) AS jumlah_transaksi, 
+							SUM(detail_transaksi.qty) * kamar.harga AS subtotal, 
 							SUM(detail_transaksi.total_harga) AS total_pendapatan');
 		$this->db->from('transaksi');
 		$this->db->join('detail_transaksi', 'transaksi.id = detail_transaksi.id_transaksi');
